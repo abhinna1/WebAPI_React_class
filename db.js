@@ -1,5 +1,4 @@
-{
-  "notes": [
+  const notes = [
     {
       "id": 1,
       "content": "HTML is easy",
@@ -19,4 +18,3 @@
       "important": false
     }
   ]
-}
