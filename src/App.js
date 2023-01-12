@@ -1,8 +1,15 @@
-import ReviewCounter from "./Component/UseStateClass/ReviewCounter";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
-function App(props) {
+function App() {
+
+  useEffect(()=>{
+    axios.get('http://localhost:3001/notes')
+    .then(res=>{
+      setNotes(res.data)
+    })
+    .catch(err=>{console.log(err)});
+  })
   // Handle form submit.
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +29,7 @@ function App(props) {
     setNewNote(e.target.value);
   };
 
-  const [notes, setNotes] = useState(props.notes);
+  const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
   return (
@@ -31,8 +38,6 @@ function App(props) {
       <button
         onClick={() => {
           setShowAll(!showAll);
-          // showAll ? notes: notes.filter()
-
         }}
       >
         Show All?
