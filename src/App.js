@@ -3,13 +3,18 @@ import axios from 'axios';
 
 function App() {
 
+  const [notes, setNotes] = useState([]);
+  const [newNote, setNewNote] = useState("");
+  const [showAll, setShowAll] = useState(true);
+
+
   useEffect(()=>{
     axios.get('http://localhost:3001/notes')
     .then(res=>{
       setNotes(res.data)
     })
     .catch(err=>{console.log(err)});
-  })
+  }, [])
   // Handle form submit.
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,9 +34,6 @@ function App() {
     setNewNote(e.target.value);
   };
 
-  const [notes, setNotes] = useState([]);
-  const [newNote, setNewNote] = useState("");
-  const [showAll, setShowAll] = useState(true);
   return (
     <>
       <h2>Notes</h2>
