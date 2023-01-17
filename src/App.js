@@ -25,7 +25,6 @@ function App() {
       important: Math.random() < 0.5,
     };
     setNotes(notes.concat(note));
-    // notes.push(note)
   };
 
   // Handle change in form input.
@@ -51,6 +50,7 @@ function App() {
             <li key={note.id}>
               <strong>{note.content}</strong>
               <p>{note.date}</p>
+              <button>Delete</button>
               <hr />
             </li>
           );
