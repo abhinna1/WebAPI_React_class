@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import NoteList from "./Component/NoteList";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -54,6 +55,8 @@ function App() {
       console.log(e);
     }
 
+    // Using .then() & .catch().
+
     // .then(response => {
     //   console.log(response)
     //   setNotes(notes.filter(n => n.id !== id ))
@@ -74,25 +77,14 @@ function App() {
       <ul>
         <hr />
         {notes.map((note) => {
-          return (
-            <li key={note.id}>
-              <strong>{note.content}</strong>
-              <p>{note.date}</p>
-              <button
-                onClick={() => {
-                  handleDelete(note.id);
-                }}
-              >
-                Delete
-              </button>
-              <hr />
-            </li>
-          );
+          return <NoteList note = {note} handleDelete={handleDelete}/>
         })}
+
       </ul>
+      
       <form action="" onSubmit={handleSubmit}>
         <input type="text" onChange={handleChange} />
-        <button>add</button>
+        <button>Add</button>
       </form>
     </>
   );
